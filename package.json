@@ -2,10 +2,14 @@
   "name": "csv-property",
   "version": "1.0.0",
   "description": "convert to csv to JSON object",
-  "main": "index.js",
+  "main": "src/csvproperty.js",
+  "bin": {
+    "csvproperty": "./src/csvproperty_cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afrontend/csv-property.git"
@@ -15,10 +19,13 @@
     "object",
     "property"
   ],
-  "author": "autoscripts",
+  "author": "<autoscripts@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/afrontend/csv-property/issues"
   },
-  "homepage": "https://github.com/afrontend/csv-property#readme"
+  "homepage": "https://github.com/afrontend/csv-property#readme",
+  "devDependencies": {
+    "mocha": "^7.1.2"
+  }
 }
