@@ -1,4 +1,4 @@
-const { toProperty } = require('../src/csvproperty.js');
+const { toProperty } = require('../src/csv-property.js');
 const assert = require('assert');
 
 describe('csv-property', function () {

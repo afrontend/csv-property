@@ -2,13 +2,13 @@
   "name": "csv-property",
   "version": "1.0.0",
   "description": "convert to csv to JSON object",
-  "main": "src/csvproperty.js",
+  "main": "src/csv-property.js",
   "bin": {
-    "csvproperty": "./src/csvproperty_cli.js"
+    "csvproperty": "./src/csv-property-cli.js"
   },
   "scripts": {
     "test": "mocha",
-    "dev": "node ./src/csvproperty_cli.js"
+    "dev": "node ./src/csv-property-cli.js"
   },
 
   "repository": {
