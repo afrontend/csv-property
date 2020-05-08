@@ -1,3 +1,5 @@
-const { toProperty } = require('./csv-property.js')
+const { toObject } = require('./csv-property.js')
 
-console.log(toProperty('csv-property'))
+console.log(toObject('apple, color, red'))
+
+

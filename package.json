@@ -1,7 +1,7 @@
 {
   "name": "csv-property",
   "version": "1.0.0",
-  "description": "convert to csv to JSON object",
+  "description": "convert to csv string to JSON object",
   "main": "src/csv-property.js",
   "bin": {
     "csvproperty": "./src/csv-property-cli.js"

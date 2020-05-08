@@ -1,6 +1,5 @@
-function toProperty(csvStr) {
-  if (!csvStr) return {}
-
+function toObject(csvStr) {
+  if (typeof(csvStr) !== 'string') return {}
   const ary = csvStr.split(',').map(a => a.trim())
   if (ary.length === 0) return {}
 
@@ -20,5 +19,6 @@ function toProperty(csvStr) {
 }
 
 module.exports = {
-  toProperty
+  toObject
 }
+
