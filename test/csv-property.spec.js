@@ -1,4 +1,4 @@
-const { toObject } = require('../src/csv-property.js');
+const { toObject, toCSVString } = require('../src/csv-property.js');
 const assert = require('assert');
 
 describe('csv-property', function () {
@@ -15,6 +15,17 @@ describe('csv-property', function () {
       banana: { color: 'yellow' },
       melon: { color: 'green' }
     });
+  });
+  it('convert object to csv string', function () {
+    assert.deepEqual(toCSVString({
+      apple: { color: 'red' },
+      banana: { color: 'yellow' },
+      melon: { color: 'green' }
+    }), [
+      'apple, color, red',
+      'banana, color, yellow',
+      'melon, color, green'
+    ]);
   });
 });
 

@@ -36,7 +36,35 @@ function toObject(csv) {
   }
 }
 
-module.exports = {
-  toObject
+/*
+ * @param {array} parents a list of parents
+ * @param {object} obj current object to inspect
+ * @param {object} ary total path array
+ * @return [
+ *   { path: "apple.color", value: 'red' },
+ *   { path: "apple.color", value: 'yellow' },
+ * ]
+ */
+function getPropertyPathAry(parents, obj, ary = []) {
+  for (p in obj) {
+    newp = [...parents, p]
+    if (typeof (obj)[p] === 'string') {
+      ary.push({ path: newp.join("."), value: obj[p] })
+    } else {
+      getPropertyPathAry([...newp], obj[p], ary)
+    }
+  }
+  return ary;
 }
 
+function toCSVString(obj) {
+  const pathAry =  getPropertyPathAry([], obj);
+  return pathAry.map(p => {
+    return [...p.path.split('.'), p.value].join(', ')
+  })
+}
+
+module.exports = {
+  toObject,
+  toCSVString
+}
