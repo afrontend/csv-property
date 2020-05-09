@@ -1,11 +1,10 @@
-function toObject(csvStr) {
-  if (typeof(csvStr) !== 'string') return {}
-  const ary = csvStr.split(',').map(a => a.trim())
+function csvToObject(csv, obj = {}) {
+  if (typeof(csv) !== 'string') return {}
+
+  const ary = csv.split(',').map(a => a.trim())
   if (ary.length === 0) return {}
 
-  let obj = {};
   let tmpObj =  obj;
-
   const last = ary.pop()
   ary.forEach((prop, index) => {
      if (ary.length - 1 === index) {
@@ -16,6 +15,25 @@ function toObject(csvStr) {
      }
   });
   return obj
+}
+
+function csvAryToObject(csv) {
+  if (!Array.isArray(csv)) return {}
+
+  let obj = {}
+  csv.forEach((c) => {
+    csvToObject(c, obj)
+  })
+
+  return obj
+}
+
+function toObject(csv) {
+  if (Array.isArray(csv)) {
+    return csvAryToObject(csv)
+  } else {
+    return csvToObject(csv)
+  }
 }
 
 module.exports = {
