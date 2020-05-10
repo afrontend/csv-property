@@ -4,45 +4,40 @@ function csvToObject(csv, obj = {}) {
   const ary = csv.split(',').map(a => a.trim())
   if (ary.length === 0) return {}
 
-  let tmpObj =  obj;
+  let tmpObj = obj
   const last = ary.pop()
   ary.forEach((prop, index) => {
      if (ary.length - 1 === index) {
        tmpObj[prop] = last
      } else {
-       obj[prop] = {}
+       if (!obj[prop]) {
+         obj[prop] = {}
+       }
        tmpObj = obj[prop]
      }
-  });
-  return obj
-}
-
-function csvAryToObject(csv) {
-  if (!Array.isArray(csv)) return {}
-
-  let obj = {}
-  csv.forEach((c) => {
-    csvToObject(c, obj)
   })
 
   return obj
 }
 
+function csvAryToObject(csv) {
+  if (!Array.isArray(csv)) return {}
+  const obj = {}
+  csv.forEach(c => csvToObject(c, obj))
+  return obj
+}
+
 function toObject(csv) {
-  if (Array.isArray(csv)) {
-    return csvAryToObject(csv)
-  } else {
-    return csvToObject(csv)
-  }
+  return Array.isArray(csv) ? csvAryToObject(csv) : csvAryToObject([csv])
 }
 
 /*
- * @param {array} parents a list of parents
- * @param {object} obj current object to inspect
+ * @param {array} parents a list of parent path
+ * @param {object} obj object to inspect
  * @param {object} ary total path array
  * @return [
- *   { path: "apple.color", value: 'red' },
- *   { path: "apple.color", value: 'yellow' },
+ *   { path: "popup.title", value: 'New Item' },
+ *   { path: "popup.prompt", value: 'Input name' }
  * ]
  */
 function getPropertyPathAry(parents, obj, ary = []) {
@@ -54,11 +49,11 @@ function getPropertyPathAry(parents, obj, ary = []) {
       getPropertyPathAry([...newp], obj[p], ary)
     }
   }
-  return ary;
+  return ary
 }
 
 function toCSVString(obj) {
-  const pathAry =  getPropertyPathAry([], obj);
+  const pathAry = getPropertyPathAry([], obj)
   return pathAry.map(p => {
     return [...p.path.split('.'), p.value].join(', ')
   })
