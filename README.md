@@ -6,6 +6,18 @@ Convert JSON object to CSV string
 
 CSV string: "path1, path2, path3, string"
 
+```javascript
+// From
+'popup, title, Login'
+
+// To
+{
+  popup: {
+    title: 'Login'
+  }
+}
+```
+
 ## Install
 ```sh
 npm install csv-property
