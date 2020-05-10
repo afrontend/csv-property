@@ -1,6 +1,6 @@
 {
   "name": "csv-property",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "convert to csv string to JSON object",
   "main": "src/csv-property.js",
   "bin": {
@@ -10,7 +10,6 @@
     "test": "mocha",
     "dev": "node ./src/csv-property-cli.js"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afrontend/csv-property.git"
