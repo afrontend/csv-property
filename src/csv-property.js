@@ -1,7 +1,11 @@
+const G = {
+  delimiter: ';'
+}
+
 function csvToObject(csv, obj = {}) {
   if (typeof(csv) !== 'string') return {}
 
-  const ary = csv.split(',').map(a => a.trim())
+  const ary = csv.split(G.delimiter).map(a => a.trim())
   if (ary.length <  2) return obj
 
   let tmp = obj
@@ -28,7 +32,8 @@ function csvAryToObject(csv) {
   return obj
 }
 
-function toObject(csv) {
+function toObject(csv, delimiter = ',') {
+  G.delimiter = delimiter;
   return Array.isArray(csv) ? csvAryToObject(csv) : csvAryToObject([csv])
 }
 
@@ -45,7 +50,7 @@ function getPropertyPathAry(parents, obj, ary = []) {
   for (p in obj) {
     newp = [...parents, p]
     if (typeof (obj)[p] === 'string') {
-      ary.push({ path: newp.join("."), value: obj[p] })
+      ary.push({ path: newp.join('.'), value: obj[p] })
     } else {
       getPropertyPathAry([...newp], obj[p], ary)
     }
@@ -53,10 +58,11 @@ function getPropertyPathAry(parents, obj, ary = []) {
   return ary
 }
 
-function toCSVString(obj) {
+function toCSVString(obj, delimiter = ',') {
+  G.delimiter = delimiter
   const pathAry = getPropertyPathAry([], obj)
   return pathAry.map(p => {
-    return [...p.path.split('.'), p.value].join(', ')
+    return [...p.path.split('.'), p.value].join(G.delimiter + ' ')
   })
 }
 

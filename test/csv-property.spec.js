@@ -31,6 +31,35 @@ describe('csv-property', function () {
       'popup, error, authError, no auth'
     ])
   })
+  it('generate JSON using CSV string with delimiter', function () {
+    assert.deepEqual(toObject('popup; title; Login', ';'), { popup: { title: 'Login' } })
+  })
+  it('generate JSON using a array of CSV string with delimiter', function () {
+    assert.deepEqual(toObject([
+      'popup; error; dupError; dupplicated id',
+      'popup; error; authError; no auth'
+    ], ';'), {
+      popup: {
+        error: {
+          dupError: 'dupplicated id',
+          authError: 'no auth'
+        }
+      },
+    })
+  })
+  it('convert object to a array of CSV string with delimiter', function () {
+    assert.deepEqual(toCSVString({
+      popup: {
+        error: {
+          dupError: 'dupplicated id',
+          authError: 'no auth'
+        }
+      },
+    }, ';'), [
+      'popup; error; dupError; dupplicated id',
+      'popup; error; authError; no auth'
+    ])
+  })
 })
 
 
