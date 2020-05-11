@@ -26,7 +26,7 @@ npm install csv-property
 ## Usage
 ```javascript
 const { toObject, toCSVString } = require('csv-property')
-toObject('popup, title, Login') // { popup: { title: 'Login' } }
+toObject([ 'popup, title, Login' ]) // { popup: { title: 'Login' } }
 toCSVString({ popup: { title: 'Login' } }) // [ 'popup, title, Login' ]
 ```
 

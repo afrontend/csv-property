@@ -2,19 +2,20 @@ function csvToObject(csv, obj = {}) {
   if (typeof(csv) !== 'string') return {}
 
   const ary = csv.split(',').map(a => a.trim())
-  if (ary.length === 0) return {}
+  if (ary.length <  2) return obj
 
-  let tmpObj = obj
-  const last = ary.pop()
+  let tmp = obj
+  let last = ary.pop()
+  let length = ary.length
   ary.forEach((prop, index) => {
-     if (ary.length - 1 === index) {
-       tmpObj[prop] = last
-     } else {
-       if (!obj[prop]) {
-         obj[prop] = {}
-       }
-       tmpObj = obj[prop]
-     }
+    if (index === length - 1) {
+      tmp[prop] = last
+    } else {
+      if (!tmp[prop]) {
+        tmp[prop] = {}
+      }
+      tmp = tmp[prop]
+    }
   })
 
   return obj
