@@ -5,7 +5,7 @@ describe('csv-property', function () {
   it('generate JSON using CSV string', function () {
     assert.deepEqual(toObject('popup, title, Login'), { popup: { title: 'Login' } })
   })
-  it('generate JSON using a array of CSV string', function () {
+  it('generate JSON using an array of CSV string', function () {
     assert.deepEqual(toObject([
       'popup, error, dupError, dupplicated id',
       'popup, error, authError, no auth'
@@ -18,7 +18,7 @@ describe('csv-property', function () {
       },
     })
   })
-  it('convert object to a array of CSV string', function () {
+  it('convert object to an array of CSV string', function () {
     assert.deepEqual(toCSVString({
       popup: {
         error: {
@@ -34,7 +34,7 @@ describe('csv-property', function () {
   it('generate JSON using CSV string with delimiter', function () {
     assert.deepEqual(toObject('popup; title; Login', ';'), { popup: { title: 'Login' } })
   })
-  it('generate JSON using a array of CSV string with delimiter', function () {
+  it('generate JSON using an array of CSV string with delimiter', function () {
     assert.deepEqual(toObject([
       'popup; error; dupError; dupplicated id',
       'popup; error; authError; no auth'
@@ -47,7 +47,7 @@ describe('csv-property', function () {
       },
     })
   })
-  it('convert object to a array of CSV string with delimiter', function () {
+  it('convert object to an array of CSV string with delimiter', function () {
     assert.deepEqual(toCSVString({
       popup: {
         error: {
@@ -59,6 +59,19 @@ describe('csv-property', function () {
       'popup; error; dupError; dupplicated id',
       'popup; error; authError; no auth'
     ])
+  })
+  it('generate JSON using an array of CSV string with delimiter (CSV string can be 0, 1, ...)', function () {
+    assert.deepEqual(toObject([
+      'popup; error; 0; dupplicated id',
+      'popup; error; 1; no auth'
+    ], ';'), {
+      popup: {
+        error: {
+          0: 'dupplicated id',
+          1: 'no auth'
+        }
+      },
+    })
   })
 })
 
