@@ -33,4 +33,4 @@ toCSVString({ popup: { title: 'Login' } }, ';') // [ 'popup; title; Login' ]
 ```
 
 ## License
-MIT © Bob Hwang
+MIT © [Bob Hwang](https://afrontend.github.io)
